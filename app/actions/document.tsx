@@ -7,13 +7,9 @@ export interface DocumentProps {
 	title?: string;
 }
 
-const DEFAULT_TITLE = readAppDisplayName(
-	"Mic%20McGrorty%20-%20Software%20Engineer",
-);
-
 export function Document(handle: Handle<DocumentProps>) {
 	return () => {
-		let { children, head, title = DEFAULT_TITLE } = handle.props;
+		let { children, head, title } = handle.props;
 
 		return (
 			<html lang="en">
@@ -29,8 +25,4 @@ export function Document(handle: Handle<DocumentProps>) {
 			</html>
 		);
 	};
-}
-
-function readAppDisplayName(value: string): string {
-	return value.startsWith("%%") ? "Remix App" : decodeURIComponent(value);
 }

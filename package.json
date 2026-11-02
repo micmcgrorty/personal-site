@@ -4,7 +4,6 @@
 	"type": "module",
 	"scripts": {
 		"dev": "node --watch --import remix/node-tsx server.ts",
-		"hmr": "node hmr.ts",
 		"start": "NODE_ENV=production node --import remix/node-tsx server.ts"
 	},
 	"engines": {

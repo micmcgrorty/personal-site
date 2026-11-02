@@ -17,6 +17,5 @@ My personal site, built in Remix.
 ```sh
 npm i
 npm run dev
-npm run hmr
 npm run start
 ```
