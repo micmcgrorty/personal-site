@@ -7,16 +7,19 @@ const FONT_STACK =
 	"'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace";
 
 const PROFILE = {
-	name: "Mic McGrorty",
-	title: "Software developer",
-	bio: "I build web applications, mostly with TypeScript. I care about simple, well-structured code and software that is pleasant to use. This is a short paragraph about what I do, what I'm interested in, and what I'm working on at the moment.",
+	name: "Michael McGrorty",
+	title: "Senior Software Engineer",
+	bio: "An experienced Senior Software Engineer dedicated to delivering innovative product solutions and robust technical architectures. A strong advocate for team collaboration, consistently bridging the gap between exceptional user experiences and seamless developer workflows.",
 };
 
+type Role = { title: string; period: string };
+
 type Job = {
-	role: string;
 	company: string;
 	companyUrl?: string;
+	companyNote?: string;
 	period: string;
+	roles: Role[];
 	summary: string;
 	highlights: string[];
 	tags: string[];
@@ -24,32 +27,80 @@ type Job = {
 
 const EXPERIENCE: Job[] = [
 	{
-		role: "Senior Software Developer",
-		company: "Company Name",
-		companyUrl: "https://example.com",
-		period: "2023 – Present",
-		summary: "One or two sentences on what the role involves and what you own.",
-		highlights: [
-			"A concrete outcome, e.g. cut page load time by 40%",
-			"Something you led, built or shipped",
+		company: "HBK",
+		companyUrl: "https://hbkworld.com",
+		period: "September 2025 - Present",
+		roles: [
+			{ title: "Senior React Developer", period: "September 2025 - Present" },
 		],
-		tags: ["TypeScript", "Node.js", "PostgreSQL"],
+		summary:
+			"As a Senior React Developer, I operate within a full-stack environment, building dynamic user interfaces with React and TypeScript while contributing to a backend powered by C#, ASP.NET, and EF Core. I am a strong advocate for engineering excellence, actively championing Test-Driven Development (TDD) and pair programming to elevate code quality and team collaboration. My focus also encompasses shaping system architecture and driving technical strategy.",
+		highlights: [
+			"Led the front-end implementation of a comprehensive new permissions system, developing a centralized permissions context that integrated securely across almost every feature in the application ",
+			"Utilized Test-Driven Development (TDD) to build and maintain robust back-end endpoints in C#, ASP.NET, and EF Core, ensuring reliable data delivery to the front end",
+			"Directed major front-end architectural improvements, including a full migration to a modern React folder structure and the co-location of Styled Components to enhance code maintainability and developer experience",
+			"Introduced an asynchronous design document process, enabling the engineering team to plan, document, and review features efficiently across major time zones without relying on synchronous meetings",
+		],
+		tags: ["React", "TypeScript", "C#", "EF Core", ".NET"],
 	},
 	{
-		role: "Software Developer",
-		company: "Another Company",
-		period: "2020 – 2023",
-		summary: "A short description of the work and the team.",
-		highlights: ["Another concrete outcome", "Another thing you're proud of"],
-		tags: ["React", "AWS"],
+		company: "Bynder",
+		companyUrl: "https://bynder.com",
+		companyNote: "Joined as GatherContent, acquired by Bynder in 2022",
+		period: "October 2021 - August 2025",
+		roles: [
+			{ title: "Senior Software Engineer", period: "July 2024 - August 2025" },
+			{ title: "Software Engineer", period: "January 2023 - July 2024" },
+			{ title: "Frontend Developer", period: "October 2021 - January 2023" },
+		],
+		summary:
+			"As a Senior Software Engineer at Bynder, I specialise in front-end development within a cross-functional team of back-end engineers, designers, and a product manager. I primarily contribute to Bynder's Content Workflow module, which was previously known as GatherContent before the acquisition. My technical stack includes a React app, a Remix app, and a Node.js-based live collaboration editing server that powers the text editor, along with additional Node.js apps for routing. I also contribute to the back-end, which uses PHP, Laravel, and MySQL.",
+		highlights: [
+			"Introduced a new server side rendered app into our stack increasing accessibility, performance and customer satisfaction for the migrated routes",
+			"Mentored and onboarded multiple new engineers, accelerating their time-to-impact within the team ",
+			"Became lead developer on our live collaboration editing server, a part of our stack not well-known by the team",
+			"Led front-end development for a cross-discipline initiative to auto-generate API documentation for front-end testing",
+			"Single-handedly modernised an entire service in the stack: converted to Typescript and added types, migrated all tests to Vitest, upgraded all dependencies and upgraded to the latest Node.js version",
+			"Selected for a brand new team within the company building a new front end infrastructure and setting standards for the rest of the front end team",
+		],
+		tags: [
+			"TypeScript",
+			"Node.js",
+			"MySQL",
+			"Laravel",
+			"JavaScript",
+			"Remix",
+			"React",
+			"PHP",
+		],
 	},
 	{
-		role: "Junior Developer",
-		company: "First Company",
-		period: "2018 – 2020",
-		summary: "Where it started and what you learned.",
-		highlights: [],
-		tags: ["JavaScript", "SQL"],
+		company: "Vidatec",
+		period: "September 2019 - October 2021",
+		roles: [
+			{ title: "Web Developer", period: "September 2019 - October 2021" },
+		],
+		summary:
+			"I worked on a variety of projects for a multitude of different clients across React and WordPress technologies. Operating in a fast-paced agency environment, I rapidly upskilled to deliver high-value client projects, quickly becoming a key developer for several clients and helping to shape the technical direction of their solutions.",
+		highlights: [
+			"Took over front end development on a React project from a team lead level developer, whilst maintaining the same levels of customer experience",
+			"Developed a fully custom Wordpress feature that allowed a book store customer to merge their book store website with their marketing website, despite no API being available for the 3rd party service they used to hold all their book sale data",
+		],
+		tags: ["React", "AWS", "PHP", "Wordpress", "Node.js", "Next.js"],
+	},
+	{
+		company: "Scotweigh",
+		period: "July 2018 - September 2019",
+		roles: [
+			{ title: "Software Developer", period: "July 2018 - September 2019" },
+		],
+		summary:
+			"After a successful career transition from brewing, I applied my self-taught software engineering skills to a challenging role within Scotweigh. As part of a two-person team, I contributed to the development of innovative software solutions for Windows-based scales, primarily used in butcher shops. By rapidly mastering PHP and a MySQL backend, I was able to quickly deliver critical features and modernize their hardware update systems.",
+		highlights: [
+			"Developed a feature that would allow customers with multiple shops to take Christmas orders from any of their shops, one of the most requested features from customers",
+			"Developed an automatic update system for the scales situated inside shops, replacing a cumbersome system that involved travelling to the shop and updating manually",
+		],
+		tags: ["JavaScript", "SQL", "VB.NET", "jQuery", "PHP"],
 	},
 ];
 
@@ -58,16 +109,16 @@ type Social = { label: string; href: string; Icon: () => () => JSX.Element };
 const SOCIALS: Social[] = [
 	{
 		label: "GitHub",
-		href: "https://github.com/your-username",
+		href: "https://github.com/micmcgrorty",
 		Icon: GitHubIcon,
 	},
 	{
 		label: "LinkedIn",
-		href: "https://www.linkedin.com/in/your-username",
+		href: "https://www.linkedin.com/in/michael-mcgrorty-a8207064/",
 		Icon: LinkedInIcon,
 	},
-	{ label: "X", href: "https://x.com/your-username", Icon: XIcon },
-	{ label: "Email", href: "mailto:you@example.com", Icon: MailIcon },
+	{ label: "X", href: "https://x.com/micmcgrorty", Icon: XIcon },
+	{ label: "Email", href: "mailto:michaelmcgrorty2@gmail.com", Icon: MailIcon },
 ];
 
 export function HomePage() {
@@ -234,7 +285,7 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 						margin: 0,
 						fontSize: "13px",
 						color: "var(--text-secondary)",
-						// Line up with the role title's first line.
+						// Line up with the company name's first line.
 						paddingTop: "2px",
 					})}
 				>
@@ -252,9 +303,6 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 								lineHeight: 1.4,
 							})}
 						>
-							{job.role}
-						</h3>
-						<p mix={css({ margin: 0, color: "var(--text-secondary)" })}>
 							{job.companyUrl ? (
 								<a href={job.companyUrl} mix={linkStyle}>
 									{job.company}
@@ -262,8 +310,20 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 							) : (
 								job.company
 							)}
-						</p>
+						</h3>
+						{job.companyNote ? (
+							<p
+								mix={css({
+									margin: 0,
+									fontSize: "13px",
+									color: "var(--text-secondary)",
+								})}
+							>
+								{job.companyNote}
+							</p>
+						) : null}
 					</div>
+					<RoleList roles={job.roles} />
 					<p
 						mix={css({
 							margin: 0,
@@ -293,6 +353,51 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 					{job.tags.length > 0 ? <TagList tags={job.tags} /> : null}
 				</div>
 			</article>
+		);
+	};
+}
+
+function RoleList(handle: Handle<{ roles: Role[] }>) {
+	return () => {
+		let { roles } = handle.props;
+		// With several titles, show each one's dates alongside a timeline line.
+		// With a single title, its dates already match the left column.
+		let multiple = roles.length > 1;
+
+		return (
+			<ol
+				aria-label="Roles"
+				mix={css({
+					listStyle: "none",
+					margin: 0,
+					padding: 0,
+					display: "flex",
+					flexDirection: "column",
+					gap: "12px",
+					...(multiple
+						? {
+								paddingLeft: "16px",
+								borderLeft: "2px solid var(--text-tertiary)",
+							}
+						: {}),
+				})}
+			>
+				{roles.map((role) => (
+					<li
+						key={`${role.title}-${role.period}`}
+						mix={css({ display: "flex", flexDirection: "column" })}
+					>
+						<span mix={css({ fontWeight: 700 })}>{role.title}</span>
+						{multiple ? (
+							<span
+								mix={css({ fontSize: "13px", color: "var(--text-secondary)" })}
+							>
+								{role.period}
+							</span>
+						) : null}
+					</li>
+				))}
+			</ol>
 		);
 	};
 }
