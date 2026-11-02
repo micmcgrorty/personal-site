@@ -3,6 +3,8 @@ import { css } from "remix/component";
 
 import { Document } from "./document.tsx";
 
+const SITE_URL = "https://www.micmcgrorty.dev/";
+
 const FONT_STACK =
 	"'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace";
 
@@ -10,6 +12,8 @@ const PROFILE = {
 	name: "Michael McGrorty",
 	title: "Senior Software Engineer",
 	bio: "An experienced Senior Software Engineer dedicated to delivering innovative product solutions and robust technical architectures. A strong advocate for team collaboration, consistently bridging the gap between exceptional user experiences and seamless developer workflows.",
+	description:
+		"Senior Software Engineer building web apps with React, TypeScript and Node.js. Currently at HBK, previously at Bynder.",
 };
 
 type Role = { title: string; period: string };
@@ -180,21 +184,35 @@ export function HomePage() {
 }
 
 function HomeHead() {
-	return () => (
-		<>
-			<meta name="description" content={PROFILE.bio} />
-			<link rel="preconnect" href="https://fonts.googleapis.com" />
-			<link
-				rel="preconnect"
-				href="https://fonts.gstatic.com"
-				crossOrigin="anonymous"
-			/>
-			<link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
-			/>
-		</>
-	);
+	return () => {
+		let pageTitle = `${PROFILE.name} – ${PROFILE.title}`;
+
+		return (
+			<>
+				<meta name="description" content={PROFILE.description} />
+				<link rel="canonical" href={SITE_URL} />
+
+				{/* Link previews (LinkedIn, X, Slack, iMessage, etc.) */}
+				<meta property="og:type" content="website" />
+				<meta property="og:site_name" content={PROFILE.name} />
+				<meta property="og:title" content={pageTitle} />
+				<meta property="og:description" content={PROFILE.description} />
+				<meta property="og:url" content={SITE_URL} />
+				<meta name="twitter:card" content="summary" />
+
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+				/>
+			</>
+		);
+	};
 }
 
 function Masthead() {
