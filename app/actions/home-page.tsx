@@ -6,14 +6,9 @@ import { Document } from "./document.tsx";
 const FONT_STACK =
 	"'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace";
 
-// ============================================================================
-// Your content. Edit this section; the components below just render it.
-// ============================================================================
-
 const PROFILE = {
-	name: "Mic McGrorty", // TODO: confirm
+	name: "Mic McGrorty",
 	title: "Software developer",
-	// TODO: replace with your own short paragraph.
 	bio: "I build web applications, mostly with TypeScript. I care about simple, well-structured code and software that is pleasant to use. This is a short paragraph about what I do, what I'm interested in, and what I'm working on at the moment.",
 };
 
@@ -27,8 +22,6 @@ type Job = {
 	tags: string[];
 };
 
-// TODO: replace these placeholder entries with your real experience.
-// Most recent first.
 const EXPERIENCE: Job[] = [
 	{
 		role: "Senior Software Developer",
@@ -62,7 +55,6 @@ const EXPERIENCE: Job[] = [
 
 type Social = { label: string; href: string; Icon: () => () => JSX.Element };
 
-// TODO: replace the URLs. Remove any you don't want.
 const SOCIALS: Social[] = [
 	{
 		label: "GitHub",
@@ -77,10 +69,6 @@ const SOCIALS: Social[] = [
 	{ label: "X", href: "https://x.com/your-username", Icon: XIcon },
 	{ label: "Email", href: "mailto:you@example.com", Icon: MailIcon },
 ];
-
-// ============================================================================
-// Page
-// ============================================================================
 
 export function HomePage() {
 	return () => (
@@ -158,8 +146,6 @@ function HomeHead() {
 	);
 }
 
-// ----- Masthead: name + short intro -----
-
 function Masthead() {
 	return () => (
 		<header
@@ -197,8 +183,6 @@ function Masthead() {
 		</header>
 	);
 }
-
-// ----- Experience -----
 
 function Experience() {
 	return () => (
@@ -345,8 +329,6 @@ function TagList(handle: Handle<{ tags: string[] }>) {
 	);
 }
 
-// ----- Footer: social links -----
-
 function Footer() {
 	return () => (
 		<footer
@@ -417,8 +399,6 @@ function SocialLink(handle: Handle<{ social: Social }>) {
 	};
 }
 
-// ----- Shared styles -----
-
 const eyebrowStyle = css({
 	margin: 0,
 	fontSize: "13px",
@@ -439,9 +419,6 @@ const linkStyle = css({
 		textUnderlineOffset: "4px",
 	},
 });
-
-// ----- SVG icons -----
-// Inline so the page is fully self-contained with no external icon assets.
 
 function GitHubIcon() {
 	return () => (
