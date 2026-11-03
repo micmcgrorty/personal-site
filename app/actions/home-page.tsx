@@ -80,17 +80,28 @@ const EXPERIENCE: Job[] = [
 	},
 	{
 		company: "Vidatec",
-		period: "September 2019 - October 2021",
+		period: "September 2019 – October 2021",
 		roles: [
-			{ title: "Web Developer", period: "September 2019 - October 2021" },
+			{ title: "Web Developer", period: "September 2019 – October 2021" },
 		],
 		summary:
-			"I worked on a variety of projects for a multitude of different clients across React and WordPress technologies. Operating in a fast-paced agency environment, I rapidly upskilled to deliver high-value client projects, quickly becoming a key developer for several clients and helping to shape the technical direction of their solutions.",
+			"I worked at a web agency in teams of two to four developers, building e-commerce sites, marketing sites and web apps for clients. My main projects were Granta.com, Social Good Connect and Insights Explore. Most were React and Node.js deployed on AWS, with one WordPress and WooCommerce project and one Next.js project.",
 		highlights: [
-			"Took over front end development on a React project from a team lead level developer, whilst maintaining the same levels of customer experience",
-			"Developed a fully custom Wordpress feature that allowed a book store customer to merge their book store website with their marketing website, despite no API being available for the 3rd party service they used to hold all their book sale data",
+			"Took over front-end development of Insights Explore when its lead developer left the company, with no drop in delivery speed or customer satisfaction",
+			"Built a custom WordPress feature to bring a customer's book sales data into their WooCommerce content site, as the service holding it had no data export",
+			"Built the marketing site for a new company, Bounc-e, in Next.js, which I hadn't used before",
+			"Built internal tools integrating our time tracking and CRM software",
+			"Took part in client calls, and worked especially closely with the customer on Granta.com",
 		],
-		tags: ["React", "AWS", "PHP", "Wordpress", "Node.js", "Next.js"],
+		tags: [
+			"React",
+			"Node.js",
+			"Next.js",
+			"AWS",
+			"PHP",
+			"WordPress",
+			"WooCommerce",
+		],
 	},
 	{
 		company: "Scotweigh",
