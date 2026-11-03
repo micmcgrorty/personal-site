@@ -6,6 +6,8 @@ import { Document } from "./document.tsx";
 const SITE_URL = "https://www.micmcgrorty.dev/";
 
 const FONT_STACK =
+	"'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif";
+const MONO_STACK =
 	"'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace";
 
 const PROFILE = {
@@ -142,7 +144,11 @@ const SOCIALS: Social[] = [
 		Icon: LinkedInIcon,
 	},
 	{ label: "X", href: "https://x.com/micmcgrorty", Icon: XIcon },
-	{ label: "Email", href: "mailto:michaelmcgrorty2@gmail.com", Icon: MailIcon },
+	{
+		label: "Email",
+		href: "mailto:michaelmcgrorty2@gmail.com",
+		Icon: MailIcon,
+	},
 ];
 
 export function HomePage() {
@@ -150,48 +156,58 @@ export function HomePage() {
 		<Document title={`${PROFILE.name} – ${PROFILE.title}`} head={<HomeHead />}>
 			<main
 				mix={css({
-					// Light-mode design tokens (default).
-					"--surface-0": "#dee2e6",
-					"--surface-3": "#f0f4f7",
-					"--surface-4": "#f7fbff",
-					"--text-primary": "#313539",
-					"--text-secondary": "#5c6065",
-					"--text-tertiary": "#94989c",
-					"--brand-blue": "#1a8fd6",
-					// Dark-mode overrides.
+					"--bg": "#f5f7fa",
+					"--surface": "#e8eef6",
+					"--text": "#101826",
+					"--muted": "#46526a",
+					"--accent": "#005eb8",
+					"--on-accent": "#ffffff",
+					"--highlight": "#f2a93b",
+					"--rule": "#cbd5e3",
 					"@media (prefers-color-scheme: dark)": {
-						"--surface-0": "#1e2226",
-						"--surface-3": "#313539",
-						"--surface-4": "#363a3e",
-						"--text-primary": "#dee2e6",
-						"--text-secondary": "#b4b8bc",
-						"--text-tertiary": "#94989c",
-						"--brand-blue": "#2dacf9",
+						"--bg": "#0e1522",
+						"--surface": "#17223a",
+						"--text": "#e8eef7",
+						"--muted": "#a9b6c9",
+						"--accent": "#5ba3ff",
+						"--on-accent": "#0e1522",
+						"--highlight": "#f2a93b",
+						"--rule": "#2a3750",
+					},
+					"@media print": {
+						"--bg": "#ffffff",
+						"--surface": "#ffffff",
+						"--text": "#000000",
+						"--muted": "#333333",
+						"--accent": "#005eb8",
+						"--on-accent": "#ffffff",
+						"--rule": "#999999",
+						minHeight: "auto",
+						padding: 0,
 					},
 					"& *, & *::before, & *::after": { boxSizing: "border-box" },
 					margin: 0,
-					padding: "72px 24px",
+					padding: "80px 32px 64px",
 					minHeight: "100vh",
-					background: "var(--surface-0)",
-					color: "var(--text-primary)",
+					background: "var(--bg)",
+					color: "var(--text)",
 					fontFamily: FONT_STACK,
-					fontSize: "14px",
-					lineHeight: 1.5,
+					fontSize: "16px",
+					lineHeight: 1.6,
 					WebkitFontSmoothing: "antialiased",
 					MozOsxFontSmoothing: "grayscale",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "flex-start",
-					"@media (max-width: 720px)": { padding: "48px 20px" },
+					"@media (max-width: 720px)": { padding: "48px 20px 48px" },
 				})}
 			>
 				<div
 					mix={css({
 						width: "100%",
-						maxWidth: "720px",
+						maxWidth: "900px",
+						margin: "0 auto",
 						display: "flex",
 						flexDirection: "column",
-						gap: "72px",
+						gap: "112px",
+						"@media (max-width: 720px)": { gap: "72px" },
 					})}
 				>
 					<Masthead />
@@ -230,8 +246,13 @@ function HomeHead() {
 				/>
 				<link
 					rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+					href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;700&display=swap"
 				/>
+
+				<style>
+					{`@keyframes spine-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }`}
+				</style>
 			</>
 		);
 	};
@@ -241,37 +262,91 @@ function Masthead() {
 	return () => (
 		<header
 			mix={css({
-				display: "flex",
-				flexDirection: "column",
-				gap: "20px",
+				display: "grid",
+				gridTemplateColumns: "minmax(0, 1fr) 260px",
+				gap: "64px",
+				alignItems: "center",
+				"@media (max-width: 720px)": {
+					gridTemplateColumns: "1fr",
+					gap: "36px",
+				},
 			})}
 		>
-			<p mix={[eyebrowStyle, css({ color: "var(--brand-blue)" })]}>
-				{PROFILE.title}
-			</p>
-			<h1
-				mix={css({
-					margin: 0,
-					fontSize: "clamp(32px, 7vw, 48px)",
-					fontWeight: 700,
-					lineHeight: 1.1,
-					letterSpacing: "-0.02em",
-				})}
-			>
-				{PROFILE.name}
-			</h1>
-			<p
-				mix={css({
-					margin: 0,
-					maxWidth: "60ch",
-					fontSize: "15px",
-					lineHeight: 1.7,
-					color: "var(--text-secondary)",
-				})}
-			>
-				{PROFILE.bio}
-			</p>
+			<div mix={css({ display: "flex", flexDirection: "column", gap: "28px" })}>
+				<div>
+					<h1
+						mix={css({
+							margin: 0,
+							fontSize: "clamp(48px, 9vw, 88px)",
+							fontWeight: 800,
+							lineHeight: 0.98,
+							letterSpacing: "-0.035em",
+							textWrap: "balance",
+						})}
+					>
+						{PROFILE.name}
+					</h1>
+					<p
+						mix={css({
+							margin: "16px 0 0",
+							fontSize: "clamp(18px, 3vw, 22px)",
+							fontWeight: 600,
+							color: "var(--accent)",
+						})}
+					>
+						{PROFILE.title}
+					</p>
+				</div>
+				<p
+					mix={css({
+						margin: 0,
+						maxWidth: "62ch",
+						fontSize: "clamp(17px, 2.4vw, 20px)",
+						lineHeight: 1.6,
+					})}
+				>
+					{PROFILE.bio}
+				</p>
+			</div>
+			<Portrait />
 		</header>
+	);
+}
+
+function Portrait() {
+	return () => (
+		<div
+			mix={css({
+				position: "relative",
+				width: "100%",
+				aspectRatio: "1 / 1",
+				"&::before": {
+					content: '""',
+					position: "absolute",
+					inset: 0,
+					transform: "translate(14px, 14px)",
+					background: "var(--accent)",
+					borderRadius: "6px",
+				},
+				"@media (max-width: 720px)": { order: -1, width: "160px" },
+				"@media print": { display: "none" },
+			})}
+		>
+			<img
+				src="/photo.webp"
+				alt={`Portrait of ${PROFILE.name}`}
+				width="720"
+				height="720"
+				mix={css({
+					position: "relative",
+					display: "block",
+					width: "100%",
+					height: "100%",
+					objectFit: "cover",
+					borderRadius: "6px",
+				})}
+			/>
+		</div>
 	);
 }
 
@@ -279,26 +354,69 @@ function Experience() {
 	return () => (
 		<section
 			aria-labelledby="experience-heading"
-			mix={css({ display: "flex", flexDirection: "column", gap: "32px" })}
+			mix={css({ display: "flex", flexDirection: "column", gap: "48px" })}
 		>
-			<h2 id="experience-heading" mix={eyebrowStyle}>
+			<h2
+				id="experience-heading"
+				mix={css({
+					margin: 0,
+					fontSize: "clamp(30px, 5vw, 40px)",
+					fontWeight: 700,
+					lineHeight: 1.1,
+					letterSpacing: "-0.025em",
+				})}
+			>
 				Experience
 			</h2>
 			<ol
 				mix={css({
 					listStyle: "none",
 					margin: 0,
-					padding: 0,
+					padding: "0 0 0 40px",
+					position: "relative",
 					display: "flex",
 					flexDirection: "column",
-					gap: "40px",
+					gap: "64px",
+					"&::before": {
+						content: '""',
+						position: "absolute",
+						left: "7px",
+						top: "10px",
+						bottom: 0,
+						width: "2px",
+						background:
+							"linear-gradient(to bottom, var(--accent), var(--rule))",
+						transformOrigin: "top",
+						animation: "spine-draw 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both",
+					},
 				})}
 			>
-				{EXPERIENCE.map((job) => (
-					<li key={`${job.company}-${job.period}`}>
-						<ExperienceItem job={job} />
-					</li>
-				))}
+				{EXPERIENCE.map((job) => {
+					let current = /present/i.test(job.period);
+
+					return (
+						<li
+							key={`${job.company}-${job.period}`}
+							mix={css({
+								position: "relative",
+								"&::before": {
+									content: '""',
+									position: "absolute",
+									left: "-40px",
+									top: "8px",
+									width: "16px",
+									height: "16px",
+									borderRadius: "50%",
+									border: "3px solid var(--accent)",
+									background: current ? "var(--highlight)" : "var(--bg)",
+								},
+								"@media print": { breakInside: "avoid" },
+							})}
+						>
+							<ExperienceItem job={job} />
+						</li>
+					);
+				})}
 			</ol>
 		</section>
 	);
@@ -310,37 +428,25 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 
 		return (
 			<article
-				mix={css({
-					display: "grid",
-					gridTemplateColumns: "160px 1fr",
-					gap: "24px",
-					"@media (max-width: 720px)": {
-						gridTemplateColumns: "1fr",
-						gap: "8px",
-					},
-				})}
+				mix={css({ display: "flex", flexDirection: "column", gap: "20px" })}
 			>
-				<p
-					mix={css({
-						margin: 0,
-						fontSize: "13px",
-						color: "var(--text-secondary)",
-						// Line up with the company name's first line.
-						paddingTop: "2px",
-					})}
-				>
-					{job.period}
-				</p>
 				<div
-					mix={css({ display: "flex", flexDirection: "column", gap: "12px" })}
+					mix={css({
+						display: "flex",
+						flexWrap: "wrap",
+						alignItems: "baseline",
+						justifyContent: "space-between",
+						gap: "4px 24px",
+					})}
 				>
 					<div>
 						<h3
 							mix={css({
 								margin: 0,
-								fontSize: "16px",
+								fontSize: "28px",
 								fontWeight: 700,
-								lineHeight: 1.4,
+								lineHeight: 1.2,
+								letterSpacing: "-0.02em",
 							})}
 						>
 							{job.companyUrl ? (
@@ -354,35 +460,47 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 						{job.companyNote ? (
 							<p
 								mix={css({
-									margin: 0,
-									fontSize: "13px",
-									color: "var(--text-secondary)",
+									margin: "2px 0 0",
+									fontSize: "15px",
+									color: "var(--muted)",
 								})}
 							>
 								{job.companyNote}
 							</p>
 						) : null}
 					</div>
-					<RoleList roles={job.roles} />
 					<p
 						mix={css({
 							margin: 0,
-							lineHeight: 1.7,
-							color: "var(--text-primary)",
+							fontSize: "15px",
+							color: "var(--muted)",
 						})}
 					>
-						{job.summary}
+						{job.period}
 					</p>
+				</div>
+
+				<RoleList roles={job.roles} />
+
+				<div
+					mix={css({
+						display: "flex",
+						flexDirection: "column",
+						gap: "16px",
+						maxWidth: "44rem",
+					})}
+				>
+					<p mix={css({ margin: 0, color: "var(--muted)" })}>{job.summary}</p>
 					{job.highlights.length > 0 ? (
 						<ul
 							mix={css({
 								margin: 0,
-								paddingLeft: "1.25em",
+								paddingLeft: "1.2em",
+								listStyleType: "disc",
 								display: "flex",
 								flexDirection: "column",
-								gap: "4px",
-								lineHeight: 1.6,
-								"& li::marker": { color: "var(--text-tertiary)" },
+								gap: "8px",
+								"& li::marker": { color: "var(--accent)" },
 							})}
 						>
 							{job.highlights.map((highlight) => (
@@ -390,8 +508,9 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 							))}
 						</ul>
 					) : null}
-					{job.tags.length > 0 ? <TagList tags={job.tags} /> : null}
 				</div>
+
+				{job.tags.length > 0 ? <TagList tags={job.tags} /> : null}
 			</article>
 		);
 	};
@@ -400,8 +519,6 @@ function ExperienceItem(handle: Handle<{ job: Job }>) {
 function RoleList(handle: Handle<{ roles: Role[] }>) {
 	return () => {
 		let { roles } = handle.props;
-		// With several titles, show each one's dates alongside a timeline line.
-		// With a single title, its dates already match the left column.
 		let multiple = roles.length > 1;
 
 		return (
@@ -413,25 +530,39 @@ function RoleList(handle: Handle<{ roles: Role[] }>) {
 					padding: 0,
 					display: "flex",
 					flexDirection: "column",
-					gap: "12px",
-					...(multiple
-						? {
-								paddingLeft: "16px",
-								borderLeft: "2px solid var(--text-tertiary)",
-							}
-						: {}),
+					gap: "10px",
 				})}
 			>
 				{roles.map((role) => (
 					<li
 						key={`${role.title}-${role.period}`}
-						mix={css({ display: "flex", flexDirection: "column" })}
+						mix={css({
+							position: "relative",
+							display: "flex",
+							flexWrap: "wrap",
+							alignItems: "baseline",
+							gap: "0 16px",
+							...(multiple
+								? {
+										"&::before": {
+											content: '""',
+											position: "absolute",
+											left: "-36px",
+											top: "10px",
+											width: "8px",
+											height: "8px",
+											borderRadius: "50%",
+											background: "var(--accent)",
+										},
+									}
+								: {}),
+						})}
 					>
-						<span mix={css({ fontWeight: 700 })}>{role.title}</span>
+						<span mix={css({ fontSize: "18px", fontWeight: 600 })}>
+							{role.title}
+						</span>
 						{multiple ? (
-							<span
-								mix={css({ fontSize: "13px", color: "var(--text-secondary)" })}
-							>
+							<span mix={css({ fontSize: "15px", color: "var(--muted)" })}>
 								{role.period}
 							</span>
 						) : null}
@@ -459,11 +590,12 @@ function TagList(handle: Handle<{ tags: string[] }>) {
 				<li
 					key={tag}
 					mix={css({
-						padding: "2px 10px",
-						borderRadius: "999px",
-						background: "var(--surface-3)",
-						color: "var(--text-secondary)",
-						fontSize: "12px",
+						padding: "2px 9px",
+						border: "1px solid var(--rule)",
+						borderRadius: "4px",
+						color: "var(--muted)",
+						fontFamily: MONO_STACK,
+						fontSize: "13px",
 						lineHeight: 1.6,
 					})}
 				>
@@ -475,39 +607,56 @@ function TagList(handle: Handle<{ tags: string[] }>) {
 }
 
 function Footer() {
+	let email = SOCIALS.find((social) => social.label === "Email");
+	let others = SOCIALS.filter((social) => social.label !== "Email");
+
 	return () => (
 		<footer
 			mix={css({
 				display: "flex",
 				flexDirection: "column",
-				gap: "24px",
-				paddingTop: "32px",
-				borderTop: "1px solid var(--surface-3)",
+				gap: "32px",
+				paddingTop: "40px",
+				borderTop: "2px solid var(--rule)",
 			})}
 		>
-			<nav aria-label="Social links">
-				<ul
-					mix={css({
-						listStyle: "none",
-						margin: 0,
-						padding: 0,
-						display: "flex",
-						flexWrap: "wrap",
-						gap: "8px 24px",
-					})}
-				>
-					{SOCIALS.map((social) => (
-						<li key={social.label}>
-							<SocialLink social={social} />
-						</li>
-					))}
-				</ul>
-			</nav>
+			<div
+				mix={css({
+					display: "flex",
+					flexWrap: "wrap",
+					alignItems: "center",
+					gap: "20px 40px",
+				})}
+			>
+				{email ? (
+					<a href={email.href} mix={buttonStyle}>
+						Email me
+					</a>
+				) : null}
+				<nav aria-label="Social links">
+					<ul
+						mix={css({
+							listStyle: "none",
+							margin: 0,
+							padding: 0,
+							display: "flex",
+							flexWrap: "wrap",
+							gap: "8px 28px",
+						})}
+					>
+						{others.map((social) => (
+							<li key={social.label}>
+								<SocialLink social={social} />
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
 			<p
 				mix={css({
 					margin: 0,
-					fontSize: "12px",
-					color: "var(--text-tertiary)",
+					fontSize: "14px",
+					color: "var(--muted)",
 				})}
 			>
 				&copy; {new Date().getFullYear()} {PROFILE.name}
@@ -529,8 +678,8 @@ function SocialLink(handle: Handle<{ social: Social }>) {
 						display: "inline-flex",
 						alignItems: "center",
 						gap: "10px",
-						padding: "4px 0",
-						color: "var(--text-primary)",
+						padding: "6px 0",
+						fontWeight: 500,
 						"& svg": { width: "20px", height: "20px", display: "block" },
 					}),
 				]}
@@ -544,24 +693,35 @@ function SocialLink(handle: Handle<{ social: Social }>) {
 	};
 }
 
-const eyebrowStyle = css({
-	margin: 0,
-	fontSize: "13px",
-	fontWeight: 700,
-	textTransform: "uppercase",
-	letterSpacing: "0.1em",
-	color: "var(--text-primary)",
-});
-
 const linkStyle = css({
 	color: "inherit",
 	textDecoration: "none",
-	transition: "color 150ms ease",
-	"&:hover, &:focus-visible": {
-		color: "var(--brand-blue)",
-		outline: "none",
+	"&:hover": {
+		color: "var(--accent)",
 		textDecoration: "underline",
 		textUnderlineOffset: "4px",
+	},
+	"&:focus-visible": {
+		outline: "2px solid var(--accent)",
+		outlineOffset: "3px",
+		borderRadius: "2px",
+	},
+});
+
+const buttonStyle = css({
+	display: "inline-block",
+	padding: "12px 24px",
+	borderRadius: "6px",
+	background: "var(--accent)",
+	color: "var(--on-accent)",
+	fontSize: "16px",
+	fontWeight: 600,
+	textDecoration: "none",
+	transition: "transform 150ms ease, filter 150ms ease",
+	"&:hover": { filter: "brightness(1.12)", transform: "translateY(-1px)" },
+	"&:focus-visible": {
+		outline: "3px solid var(--accent)",
+		outlineOffset: "3px",
 	},
 });
 
