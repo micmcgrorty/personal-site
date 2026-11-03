@@ -33,19 +33,26 @@ const EXPERIENCE: Job[] = [
 	{
 		company: "HBK",
 		companyUrl: "https://hbkworld.com",
-		period: "September 2025 - Present",
+		period: "September 2025 – Present",
 		roles: [
-			{ title: "Senior React Developer", period: "September 2025 - Present" },
+			{ title: "Senior React Developer", period: "September 2025 – Present" },
 		],
 		summary:
-			"As a Senior React Developer, I operate within a full-stack environment, building dynamic user interfaces with React and TypeScript while contributing to a backend powered by C#, ASP.NET, and EF Core. I am a strong advocate for engineering excellence, actively championing Test-Driven Development (TDD) and pair programming to elevate code quality and team collaboration. My focus also encompasses shaping system architecture and driving technical strategy.",
+			"I work on ReliaSoft Cloud, HBK's SaaS software for FMEA (failure mode and effects analysis), as part of a distributed team across the US, UK and Poland. I work across the full stack: React and TypeScript on the front end, and C#, ASP.NET and EF Core on the back end, which was new to me when I joined.",
 		highlights: [
-			"Led the front-end implementation of a comprehensive new permissions system, developing a centralized permissions context that integrated securely across almost every feature in the application ",
-			"Utilized Test-Driven Development (TDD) to build and maintain robust back-end endpoints in C#, ASP.NET, and EF Core, ensuring reliable data delivery to the front end",
-			"Directed major front-end architectural improvements, including a full migration to a modern React folder structure and the co-location of Styled Components to enhance code maintainability and developer experience",
-			"Introduced an asynchronous design document process, enabling the engineering team to plan, document, and review features efficiently across major time zones without relying on synchronous meetings",
+			"Designed and built the front end of a new permissions system: a React context wrapping the whole app, so any component can check permissions with a hook",
+			"Pushed for a restructure of a front-end codebase that was hard to follow, and did a large part of the work: a clearer React folder structure and co-located Styled Components",
+			"Designed the architecture (database schema and endpoints) for making a hard-coded dataset configurable per FMEA type. It was reviewed by the architects and adopted as I proposed it",
+			"Build back-end endpoints in C#, ASP.NET and EF Core using test-driven development, following the team's existing conventions, and use TDD on the front end too",
 		],
-		tags: ["React", "TypeScript", "C#", "EF Core", ".NET"],
+		tags: [
+			"React",
+			"TypeScript",
+			"Styled Components",
+			"C#",
+			"ASP.NET",
+			"EF Core",
+		],
 	},
 	{
 		company: "Bynder",
