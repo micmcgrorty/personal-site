@@ -94,17 +94,18 @@ const EXPERIENCE: Job[] = [
 	},
 	{
 		company: "Scotweigh",
-		period: "July 2018 - September 2019",
+		period: "July 2018 – September 2019",
 		roles: [
-			{ title: "Software Developer", period: "July 2018 - September 2019" },
+			{ title: "Software Developer", period: "July 2018 – September 2019" },
 		],
 		summary:
-			"After a successful career transition from brewing, I applied my self-taught software engineering skills to a challenging role within Scotweigh. As part of a two-person team, I contributed to the development of innovative software solutions for Windows-based scales, primarily used in butcher shops. By rapidly mastering PHP and a MySQL backend, I was able to quickly deliver critical features and modernize their hardware update systems.",
+			"I moved into software from brewing after five months of study, and Scotweigh was my first developer job. I was one of two developers on software for Windows-based scales, mostly used in butcher shops. The scales ran VB.NET software with a MySQL database, and a PHP and jQuery web server, all deployed locally in each shop.",
 		highlights: [
-			"Developed a feature that would allow customers with multiple shops to take Christmas orders from any of their shops, one of the most requested features from customers",
-			"Developed an automatic update system for the scales situated inside shops, replacing a cumbersome system that involved travelling to the shop and updating manually",
+			"Built a feature that let customers with several shops take Christmas orders at any of them, one of the most requested features from customers",
+			"Replaced the manual process of travelling to each shop to update its scales with an automatic update system",
+			"Fixed bugs, added features and supported customers, including visiting butchers' shops to set up systems on site",
 		],
-		tags: ["JavaScript", "SQL", "VB.NET", "jQuery", "PHP"],
+		tags: ["VB.NET", "PHP", "MySQL", "jQuery", "JavaScript"],
 	},
 ];
 
