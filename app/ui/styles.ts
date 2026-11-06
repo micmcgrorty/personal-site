@@ -5,6 +5,21 @@ export const FONT_STACK =
 export const MONO_STACK =
 	"'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace";
 
+export const FONT_FACES = `@font-face {
+	font-family: 'Bricolage Grotesque';
+	font-style: normal;
+	font-weight: 400 800;
+	font-display: swap;
+	src: url(/fonts/bricolage-grotesque-latin.woff2) format('woff2');
+}
+@font-face {
+	font-family: 'JetBrains Mono';
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+	src: url(/fonts/jetbrains-mono-latin.woff2) format('woff2');
+}`;
+
 export const linkStyle = css({
 	color: "inherit",
 	textDecoration: "none",
