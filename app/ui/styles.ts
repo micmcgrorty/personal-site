@@ -1,4 +1,5 @@
 import { css } from "remix/component";
+import { theme } from "./theme.ts";
 
 export const FONT_STACK =
 	"'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif";
@@ -24,12 +25,12 @@ export const linkStyle = css({
 	color: "inherit",
 	textDecoration: "none",
 	"&:hover": {
-		color: "var(--accent)",
+		color: theme.accent,
 		textDecoration: "underline",
 		textUnderlineOffset: "4px",
 	},
 	"&:focus-visible": {
-		outline: "2px solid var(--accent)",
+		outline: `2px solid ${theme.accent}`,
 		outlineOffset: "3px",
 		borderRadius: "2px",
 	},
@@ -39,15 +40,15 @@ export const buttonStyle = css({
 	display: "inline-block",
 	padding: "12px 24px",
 	borderRadius: "6px",
-	background: "var(--accent)",
-	color: "var(--on-accent)",
+	background: theme.accent,
+	color: theme.onAccent,
 	fontSize: "16px",
 	fontWeight: 600,
 	textDecoration: "none",
 	transition: "transform 150ms ease, filter 150ms ease",
 	"&:hover": { filter: "brightness(1.12)", transform: "translateY(-1px)" },
 	"&:focus-visible": {
-		outline: "3px solid var(--accent)",
+		outline: `3px solid ${theme.accent}`,
 		outlineOffset: "3px",
 	},
 });

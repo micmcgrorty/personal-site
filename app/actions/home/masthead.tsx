@@ -1,6 +1,7 @@
 import { css } from "remix/component";
 
 import { PROFILE } from "../../data/profile.ts";
+import { theme } from "../../ui/theme.ts";
 
 export function Masthead() {
 	return () => (
@@ -35,7 +36,7 @@ export function Masthead() {
 							margin: "16px 0 0",
 							fontSize: "clamp(18px, 3vw, 22px)",
 							fontWeight: 600,
-							color: "var(--accent)",
+							color: theme.accent,
 						})}
 					>
 						{PROFILE.title}
@@ -69,7 +70,7 @@ function Portrait() {
 					position: "absolute",
 					inset: 0,
 					transform: "translate(14px, 14px)",
-					background: "var(--accent)",
+					background: theme.accent,
 					borderRadius: "6px",
 				},
 				"@media (max-width: 720px)": { order: -1, width: "160px" },

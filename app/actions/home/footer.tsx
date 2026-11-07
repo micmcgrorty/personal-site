@@ -4,6 +4,7 @@ import { css } from "remix/component";
 import { PROFILE } from "../../data/profile.ts";
 import { SOCIALS, type Social } from "../../data/socials.ts";
 import { buttonStyle, linkStyle } from "../../ui/styles.ts";
+import { theme } from "../../ui/theme.ts";
 
 export function Footer() {
 	return () => (
@@ -13,7 +14,7 @@ export function Footer() {
 				flexDirection: "column",
 				gap: "32px",
 				paddingTop: "40px",
-				borderTop: "2px solid var(--rule)",
+				borderTop: `2px solid ${theme.rule}`,
 			})}
 		>
 			<div
@@ -50,7 +51,7 @@ export function Footer() {
 				mix={css({
 					margin: 0,
 					fontSize: "14px",
-					color: "var(--muted)",
+					color: theme.muted,
 				})}
 			>
 				&copy; {new Date().getFullYear()} {PROFILE.name}

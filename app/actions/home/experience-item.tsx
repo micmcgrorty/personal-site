@@ -4,6 +4,7 @@ import { css } from "remix/component";
 import type { Job, Role } from "../../data/experience.ts";
 import { linkStyle, MONO_STACK } from "../../ui/styles.ts";
 import { timelineSubEntryMarker } from "../../ui/timeline.tsx";
+import { theme } from "../../ui/theme.ts";
 
 export function ExperienceItem(handle: Handle<{ job: Job }>) {
 	return () => {
@@ -45,7 +46,7 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 								mix={css({
 									margin: "2px 0 0",
 									fontSize: "15px",
-									color: "var(--muted)",
+									color: theme.muted,
 								})}
 							>
 								{job.companyNote}
@@ -56,7 +57,7 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 						mix={css({
 							margin: 0,
 							fontSize: "15px",
-							color: "var(--muted)",
+							color: theme.muted,
 						})}
 					>
 						{job.period}
@@ -73,7 +74,7 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 						maxWidth: "44rem",
 					})}
 				>
-					<p mix={css({ margin: 0, color: "var(--muted)" })}>{job.summary}</p>
+					<p mix={css({ margin: 0, color: theme.muted })}>{job.summary}</p>
 					{job.highlights.length > 0 ? (
 						<ul
 							mix={css({
@@ -83,7 +84,7 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 								display: "flex",
 								flexDirection: "column",
 								gap: "8px",
-								"& li::marker": { color: "var(--accent)" },
+								"& li::marker": { color: theme.accent },
 							})}
 						>
 							{job.highlights.map((highlight) => (
@@ -131,7 +132,7 @@ function RoleList(handle: Handle<{ roles: Role[]; showPeriods: boolean }>) {
 							{role.title}
 						</span>
 						{showPeriods ? (
-							<span mix={css({ fontSize: "15px", color: "var(--muted)" })}>
+							<span mix={css({ fontSize: "15px", color: theme.muted })}>
 								{role.period}
 							</span>
 						) : null}
@@ -160,9 +161,9 @@ function TagList(handle: Handle<{ tags: string[] }>) {
 					key={tag}
 					mix={css({
 						padding: "2px 9px",
-						border: "1px solid var(--rule)",
+						border: `1px solid ${theme.rule}`,
 						borderRadius: "4px",
-						color: "var(--muted)",
+						color: theme.muted,
 						fontFamily: MONO_STACK,
 						fontSize: "13px",
 						lineHeight: 1.6,
