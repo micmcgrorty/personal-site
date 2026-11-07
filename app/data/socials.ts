@@ -1,4 +1,4 @@
-import { GitHubIcon, LinkedInIcon, MailIcon, XIcon } from "../ui/icons.tsx";
+import { GitHubIcon, LinkedInIcon, XIcon } from "../ui/icons.tsx";
 
 export type Social = {
 	label: string;
@@ -18,9 +18,4 @@ export const SOCIALS: Social[] = [
 		Icon: LinkedInIcon,
 	},
 	{ label: "X", href: "https://x.com/micmcgrorty", Icon: XIcon },
-	{
-		label: "Email",
-		href: "mailto:michaelmcgrorty2@gmail.com",
-		Icon: MailIcon,
-	},
 ];

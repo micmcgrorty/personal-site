@@ -6,9 +6,6 @@ import { SOCIALS, type Social } from "../../data/socials.ts";
 import { buttonStyle, linkStyle } from "../../ui/styles.ts";
 
 export function Footer() {
-	let email = SOCIALS.find((social) => social.label === "Email");
-	let others = SOCIALS.filter((social) => social.label !== "Email");
-
 	return () => (
 		<footer
 			mix={css({
@@ -27,11 +24,9 @@ export function Footer() {
 					gap: "20px 40px",
 				})}
 			>
-				{email ? (
-					<a href={email.href} mix={buttonStyle}>
-						Email me
-					</a>
-				) : null}
+				<a href={`mailto:${PROFILE.email}`} mix={buttonStyle}>
+					Email me
+				</a>
 				<nav aria-label="Social links">
 					<ul
 						mix={css({
@@ -43,7 +38,7 @@ export function Footer() {
 							gap: "8px 28px",
 						})}
 					>
-						{others.map((social) => (
+						{SOCIALS.map((social) => (
 							<li key={social.label}>
 								<SocialLink social={social} />
 							</li>
