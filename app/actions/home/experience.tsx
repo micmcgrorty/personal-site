@@ -1,6 +1,6 @@
 import { css } from "remix/component";
 
-import { EXPERIENCE, isCurrentJob } from "../../data/experience.ts";
+import { EXPERIENCE } from "../../data/experience.ts";
 import { ExperienceItem } from "./experience-item.tsx";
 
 export function Experience() {
@@ -45,7 +45,7 @@ export function Experience() {
 				})}
 			>
 				{EXPERIENCE.map((job) => {
-					let current = isCurrentJob(job);
+					let current = job.current;
 
 					return (
 						<li

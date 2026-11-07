@@ -62,7 +62,7 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 					</p>
 				</div>
 
-				<RoleList roles={job.roles} />
+				<RoleList roles={job.roles} showPeriods={job.showRolePeriods} />
 
 				<div
 					mix={css({
@@ -98,10 +98,9 @@ export function ExperienceItem(handle: Handle<{ job: Job }>) {
 	};
 }
 
-function RoleList(handle: Handle<{ roles: Role[] }>) {
+function RoleList(handle: Handle<{ roles: Role[]; showPeriods: boolean }>) {
 	return () => {
-		let { roles } = handle.props;
-		let multiple = roles.length > 1;
+		let { roles, showPeriods } = handle.props;
 
 		return (
 			<ol
@@ -124,7 +123,7 @@ function RoleList(handle: Handle<{ roles: Role[] }>) {
 							flexWrap: "wrap",
 							alignItems: "baseline",
 							gap: "0 16px",
-							...(multiple
+							...(showPeriods
 								? {
 										"&::before": {
 											content: '""',
@@ -143,7 +142,7 @@ function RoleList(handle: Handle<{ roles: Role[] }>) {
 						<span mix={css({ fontSize: "18px", fontWeight: 600 })}>
 							{role.title}
 						</span>
-						{multiple ? (
+						{showPeriods ? (
 							<span mix={css({ fontSize: "15px", color: "var(--muted)" })}>
 								{role.period}
 							</span>

@@ -1,28 +1,77 @@
-export type Role = { title: string; period: string };
+/** A month, written as `YYYY-MM`. */
+export type YearMonth = `${number}-${number}`;
 
-export type Job = {
+/** A role as written in the data: structured dates, no display text. */
+export type RoleEntry = { title: string; start: YearMonth; end?: YearMonth };
+
+/** A job as written in the data. */
+export type JobEntry = {
 	company: string;
 	companyUrl?: string;
 	companyNote?: string;
-	period: string;
-	roles: Role[];
+	/** Newest role first. */
+	roles: RoleEntry[];
 	summary: string;
 	highlights: string[];
 	tags: string[];
 };
 
-export function isCurrentJob(job: Job): boolean {
-	return /present/i.test(job.period);
+export type Role = { title: string; period: string };
+
+/** A job ready to display, with its periods worked out from its roles. */
+export type Job = Omit<JobEntry, "roles"> & {
+	period: string;
+	current: boolean;
+	/** Role periods are only worth showing when the job had several roles. */
+	showRolePeriods: boolean;
+	roles: Role[];
+};
+
+const MONTHS = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
+
+function formatMonth(month: YearMonth): string {
+	let [year, index] = month.split("-");
+	return `${MONTHS[Number(index) - 1]} ${year}`;
 }
 
-export const EXPERIENCE: Job[] = [
+function formatPeriod(start: YearMonth, end?: YearMonth): string {
+	return `${formatMonth(start)} – ${end ? formatMonth(end) : "Present"}`;
+}
+
+export function defineJob(entry: JobEntry): Job {
+	let newest = entry.roles[0];
+	let oldest = entry.roles[entry.roles.length - 1];
+
+	return {
+		...entry,
+		period: formatPeriod(oldest.start, newest.end),
+		current: newest.end === undefined,
+		showRolePeriods: entry.roles.length > 1,
+		roles: entry.roles.map((role) => ({
+			title: role.title,
+			period: formatPeriod(role.start, role.end),
+		})),
+	};
+}
+
+const ENTRIES: JobEntry[] = [
 	{
 		company: "HBK",
 		companyUrl: "https://hbkworld.com",
-		period: "September 2025 – Present",
-		roles: [
-			{ title: "Senior React Developer", period: "September 2025 – Present" },
-		],
+		roles: [{ title: "Senior React Developer", start: "2025-09" }],
 		summary:
 			"I work on ReliaSoft Cloud, HBK's SaaS software for FMEA (failure mode and effects analysis), as part of a distributed team across the US, UK and Poland. I work across the full stack: React and TypeScript on the front end, and C#, ASP.NET and EF Core on the back end, which was new to me when I joined.",
 		highlights: [
@@ -44,11 +93,10 @@ export const EXPERIENCE: Job[] = [
 		company: "Bynder",
 		companyUrl: "https://bynder.com",
 		companyNote: "Joined as GatherContent, acquired by Bynder in 2022",
-		period: "October 2021 – August 2025",
 		roles: [
-			{ title: "Senior Software Engineer", period: "July 2024 – August 2025" },
-			{ title: "Software Engineer", period: "January 2023 – July 2024" },
-			{ title: "Frontend Developer", period: "October 2021 – January 2023" },
+			{ title: "Senior Software Engineer", start: "2024-07", end: "2025-08" },
+			{ title: "Software Engineer", start: "2023-01", end: "2024-07" },
+			{ title: "Frontend Developer", start: "2021-10", end: "2023-01" },
 		],
 		summary:
 			"I worked on Bynder's Content Workflow module, formerly GatherContent. I was a front-end developer in a cross-functional team of back-end engineers, designers and a product manager. My work covered a React app, a Remix app and a Node.js server for live collaborative editing, and I also contributed to the PHP, Laravel and MySQL back end.",
@@ -74,10 +122,7 @@ export const EXPERIENCE: Job[] = [
 	},
 	{
 		company: "Vidatec",
-		period: "September 2019 – October 2021",
-		roles: [
-			{ title: "Web Developer", period: "September 2019 – October 2021" },
-		],
+		roles: [{ title: "Web Developer", start: "2019-09", end: "2021-10" }],
 		summary:
 			"I worked at a web agency in teams of two to four developers, building e-commerce sites, marketing sites and web apps for clients. My main projects were Granta.com, Social Good Connect and Insights Explore. Most were React and Node.js deployed on AWS, with one WordPress and WooCommerce project and one Next.js project.",
 		highlights: [
@@ -99,10 +144,7 @@ export const EXPERIENCE: Job[] = [
 	},
 	{
 		company: "Scotweigh",
-		period: "July 2018 – September 2019",
-		roles: [
-			{ title: "Software Developer", period: "July 2018 – September 2019" },
-		],
+		roles: [{ title: "Software Developer", start: "2018-07", end: "2019-09" }],
 		summary:
 			"I moved into software from brewing after five months of study, and Scotweigh was my first developer job. I was one of two developers on software for Windows-based scales, mostly used in butcher shops. The scales ran VB.NET software with a MySQL database, and a PHP and jQuery web server, all deployed locally in each shop.",
 		highlights: [
@@ -113,3 +155,5 @@ export const EXPERIENCE: Job[] = [
 		tags: ["VB.NET", "PHP", "MySQL", "jQuery", "JavaScript"],
 	},
 ];
+
+export const EXPERIENCE: Job[] = ENTRIES.map(defineJob);
