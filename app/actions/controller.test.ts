@@ -29,7 +29,9 @@ describe("home page", () => {
 		expect(response.status).toBe(404);
 	});
 
-	it("includes SEO and social sharing tags", async () => {
+	// Which tags Document renders from a page's meta is covered in
+	// document.test.tsx; this checks the home route passes the home page's meta.
+	it("describes the home page at the site root", async () => {
 		let response = await router.fetch(
 			new Request(new URL(routes.home.href(), origin)),
 		);
@@ -40,16 +42,6 @@ describe("home page", () => {
 		);
 		expect(html).toContain(
 			'<link rel="canonical" href="https://www.micmcgrorty.dev/"',
-		);
-		expect(html).toContain(
-			'<meta property="og:url" content="https://www.micmcgrorty.dev/"',
-		);
-		expect(html).toContain(`<meta property="og:title" content="${PAGE_TITLE}"`);
-		expect(html).toContain(
-			`<meta property="og:description" content="${PROFILE.description}"`,
-		);
-		expect(html).toContain(
-			'<meta property="og:image" content="https://www.micmcgrorty.dev/og-image.png"',
 		);
 	});
 });
