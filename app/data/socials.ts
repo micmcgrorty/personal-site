@@ -1,21 +1,17 @@
-import { GitHubIcon, LinkedInIcon, XIcon } from "../ui/icons.tsx";
+export type SocialIcon = "github" | "linkedin" | "x";
 
 export type Social = {
 	label: string;
 	href: string;
-	Icon: () => () => JSX.Element;
+	icon: SocialIcon;
 };
 
 export const SOCIALS: Social[] = [
-	{
-		label: "GitHub",
-		href: "https://github.com/micmcgrorty",
-		Icon: GitHubIcon,
-	},
+	{ label: "GitHub", href: "https://github.com/micmcgrorty", icon: "github" },
 	{
 		label: "LinkedIn",
 		href: "https://www.linkedin.com/in/michael-mcgrorty-a8207064/",
-		Icon: LinkedInIcon,
+		icon: "linkedin",
 	},
-	{ label: "X", href: "https://x.com/micmcgrorty", Icon: XIcon },
+	{ label: "X", href: "https://x.com/micmcgrorty", icon: "x" },
 ];

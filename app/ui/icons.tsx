@@ -1,3 +1,5 @@
+import type { SocialIcon } from "../data/socials.ts";
+
 export function GitHubIcon() {
 	return () => (
 		<svg viewBox="0 0 20 19.67" fill="none">
@@ -32,3 +34,9 @@ export function XIcon() {
 		</svg>
 	);
 }
+
+export const SOCIAL_ICONS: Record<SocialIcon, () => () => JSX.Element> = {
+	github: GitHubIcon,
+	linkedin: LinkedInIcon,
+	x: XIcon,
+};

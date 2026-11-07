@@ -1,10 +1,8 @@
 import type { Handle, RemixNode } from "remix/component";
 
-import { PROFILE } from "../data/profile.ts";
+import { SITE } from "../data/site.ts";
 import { FONT_FACES, FONT_STACK } from "../ui/styles.ts";
 import { DARK, LIGHT, PRINT, paletteRule, theme } from "../ui/theme.ts";
-
-const SITE_URL = "https://www.micmcgrorty.dev";
 
 export interface PageMeta {
 	title: string;
@@ -43,7 +41,7 @@ body {
 export function Document(handle: Handle<DocumentProps>) {
 	return () => {
 		let { children, meta } = handle.props;
-		let url = new URL(meta.path, SITE_URL).href;
+		let url = new URL(meta.path, SITE.url).href;
 
 		return (
 			<html lang="en">
@@ -66,13 +64,22 @@ export function Document(handle: Handle<DocumentProps>) {
 					<link rel="canonical" href={url} />
 
 					<meta property="og:type" content="website" />
-					<meta property="og:site_name" content={PROFILE.name} />
+					<meta property="og:site_name" content={SITE.name} />
 					<meta property="og:title" content={meta.title} />
 					<meta property="og:description" content={meta.description} />
 					<meta property="og:url" content={url} />
-					<meta property="og:image" content={`${SITE_URL}/og-image.png`} />
-					<meta property="og:image:width" content="1200" />
-					<meta property="og:image:height" content="630" />
+					<meta
+						property="og:image"
+						content={new URL(SITE.ogImage.path, SITE.url).href}
+					/>
+					<meta
+						property="og:image:width"
+						content={String(SITE.ogImage.width)}
+					/>
+					<meta
+						property="og:image:height"
+						content={String(SITE.ogImage.height)}
+					/>
 					<meta name="twitter:card" content="summary_large_image" />
 				</head>
 				<body>{children}</body>
