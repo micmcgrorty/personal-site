@@ -1,8 +1,8 @@
 import type { Handle, RemixNode } from "remix/component";
-import { css } from "remix/component";
 
 import { PROFILE } from "../data/profile.ts";
-import { FONT_FACES } from "../ui/styles.ts";
+import { FONT_FACES, FONT_STACK } from "../ui/styles.ts";
+import { DARK, LIGHT, PRINT, paletteRule, theme } from "../ui/theme.ts";
 
 const SITE_URL = "https://www.micmcgrorty.dev";
 
@@ -18,7 +18,26 @@ export interface DocumentProps {
 	children?: RemixNode;
 }
 
+/** Every site-wide rule: fonts, the theme palettes, resets and base type. */
 const SITE_STYLES = `${FONT_FACES}
+${paletteRule(LIGHT)}
+@media (prefers-color-scheme: dark) {
+${paletteRule(DARK)}
+}
+@media print {
+${paletteRule(PRINT)}
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+	margin: 0;
+	background: ${theme.bg};
+	color: ${theme.text};
+	font-family: ${FONT_STACK};
+	font-size: 16px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }`;
 
 export function Document(handle: Handle<DocumentProps>) {
@@ -56,7 +75,7 @@ export function Document(handle: Handle<DocumentProps>) {
 					<meta property="og:image:height" content="630" />
 					<meta name="twitter:card" content="summary_large_image" />
 				</head>
-				<body mix={css({ margin: 0 })}>{children}</body>
+				<body>{children}</body>
 			</html>
 		);
 	};
