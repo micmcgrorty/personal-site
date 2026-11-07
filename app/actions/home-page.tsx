@@ -1,4 +1,4 @@
-import { PAGE_TITLE } from "../data/profile.ts";
+import { PAGE_TITLE, PROFILE } from "../data/profile.ts";
 import { PageLayout } from "../ui/page-layout.tsx";
 import { Document } from "./document.tsx";
 import { Experience } from "./home/experience.tsx";
@@ -8,7 +8,10 @@ import { Masthead } from "./home/masthead.tsx";
 
 export function HomePage() {
 	return () => (
-		<Document title={PAGE_TITLE} head={<HomeHead />}>
+		<Document
+			meta={{ title: PAGE_TITLE, description: PROFILE.description, path: "/" }}
+			head={<HomeHead />}
+		>
 			<PageLayout>
 				<Masthead />
 				<Experience />
