@@ -28,6 +28,23 @@ describe("Footer", () => {
 		expect(nav).not.toContain("mailto:");
 	});
 
+	it("shows each social link with the icon its key names", async () => {
+		let html = await renderToString(<Footer />);
+		let viewBoxes: Record<string, string> = {
+			github: "0 0 20 19.67",
+			linkedin: "0 0 24 24",
+			x: "0 0 18.33 16.57",
+		};
+
+		for (let social of SOCIALS) {
+			let link = html.match(
+				new RegExp(`<a href="${social.href}"[\\s\\S]*?</a>`),
+			)?.[0];
+
+			expect(link).toContain(`<svg viewBox="${viewBoxes[social.icon]}"`);
+		}
+	});
+
 	it("shows the current year in the copyright notice", async () => {
 		let html = await renderToString(<Footer />);
 		let year = new Date().getFullYear();

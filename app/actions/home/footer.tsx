@@ -3,6 +3,7 @@ import { css } from "remix/component";
 
 import { PROFILE } from "../../data/profile.ts";
 import { SOCIALS, type Social } from "../../data/socials.ts";
+import { SOCIAL_ICONS } from "../../ui/icons.tsx";
 import { buttonStyle, linkStyle } from "../../ui/styles.ts";
 import { theme } from "../../ui/theme.ts";
 
@@ -62,7 +63,8 @@ export function Footer() {
 
 function SocialLink(handle: Handle<{ social: Social }>) {
 	return () => {
-		let { label, href, Icon } = handle.props.social;
+		let { label, href, icon } = handle.props.social;
+		let Icon = SOCIAL_ICONS[icon];
 
 		return (
 			<a
