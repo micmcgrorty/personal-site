@@ -1,6 +1,8 @@
 import type { Handle, RemixNode } from "remix/component";
 import { css } from "remix/component";
 
+import { theme } from "./theme.ts";
+
 /** Space to the left of each entry, where the spine and markers sit. */
 const GUTTER = 40;
 /** Horizontal centre of the spine, measured from the timeline's left edge. */
@@ -40,7 +42,7 @@ export function Timeline(handle: Handle<{ children?: RemixNode }>) {
 					top: "10px",
 					bottom: 0,
 					width: "2px",
-					background: "linear-gradient(to bottom, var(--accent), var(--rule))",
+					background: `linear-gradient(to bottom, ${theme.accent}, ${theme.rule})`,
 					transformOrigin: "top",
 					animation: "spine-draw 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both",
 				},
@@ -67,8 +69,8 @@ export function TimelineEntry(
 					width: `${ENTRY_MARKER}px`,
 					height: `${ENTRY_MARKER}px`,
 					borderRadius: "50%",
-					border: "3px solid var(--accent)",
-					background: handle.props.current ? "var(--highlight)" : "var(--bg)",
+					border: `3px solid ${theme.accent}`,
+					background: handle.props.current ? theme.highlight : theme.bg,
 				},
 				"@media print": { breakInside: "avoid" },
 			})}
@@ -92,6 +94,6 @@ export const timelineSubEntryMarker = {
 		width: `${SUB_ENTRY_MARKER}px`,
 		height: `${SUB_ENTRY_MARKER}px`,
 		borderRadius: "50%",
-		background: "var(--accent)",
+		background: theme.accent,
 	},
 } as const;
