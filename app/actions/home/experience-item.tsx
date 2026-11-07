@@ -3,6 +3,7 @@ import { css } from "remix/component";
 
 import type { Job, Role } from "../../data/experience.ts";
 import { linkStyle, MONO_STACK } from "../../ui/styles.ts";
+import { timelineSubEntryMarker } from "../../ui/timeline.tsx";
 
 export function ExperienceItem(handle: Handle<{ job: Job }>) {
 	return () => {
@@ -123,20 +124,7 @@ function RoleList(handle: Handle<{ roles: Role[]; showPeriods: boolean }>) {
 							flexWrap: "wrap",
 							alignItems: "baseline",
 							gap: "0 16px",
-							...(showPeriods
-								? {
-										"&::before": {
-											content: '""',
-											position: "absolute",
-											left: "-36px",
-											top: "10px",
-											width: "8px",
-											height: "8px",
-											borderRadius: "50%",
-											background: "var(--accent)",
-										},
-									}
-								: {}),
+							...(showPeriods ? timelineSubEntryMarker : {}),
 						})}
 					>
 						<span mix={css({ fontSize: "18px", fontWeight: 600 })}>
