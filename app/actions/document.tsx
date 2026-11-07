@@ -16,13 +16,14 @@ export interface PageMeta {
 export interface DocumentProps {
 	meta: PageMeta;
 	children?: RemixNode;
-	/** Extra tags for the end of `<head>`. */
-	head?: RemixNode;
 }
+
+const SITE_STYLES = `${FONT_FACES}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }`;
 
 export function Document(handle: Handle<DocumentProps>) {
 	return () => {
-		let { children, head, meta } = handle.props;
+		let { children, meta } = handle.props;
 		let url = new URL(meta.path, SITE_URL).href;
 
 		return (
@@ -40,7 +41,7 @@ export function Document(handle: Handle<DocumentProps>) {
 						type="font/woff2"
 						crossOrigin="anonymous"
 					/>
-					<style>{FONT_FACES}</style>
+					<style>{SITE_STYLES}</style>
 
 					<meta name="description" content={meta.description} />
 					<link rel="canonical" href={url} />
@@ -54,7 +55,6 @@ export function Document(handle: Handle<DocumentProps>) {
 					<meta property="og:image:width" content="1200" />
 					<meta property="og:image:height" content="630" />
 					<meta name="twitter:card" content="summary_large_image" />
-					{head}
 				</head>
 				<body mix={css({ margin: 0 })}>{children}</body>
 			</html>
