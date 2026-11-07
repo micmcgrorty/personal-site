@@ -23,4 +23,5 @@ npm run lint:fix
 npm run format
 npm run format:check
 npm run type-check
+npm run test
 ```

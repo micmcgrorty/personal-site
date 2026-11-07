@@ -11,6 +11,10 @@ export type Job = {
 	tags: string[];
 };
 
+export function isCurrentJob(job: Job): boolean {
+	return /present/i.test(job.period);
+}
+
 export const EXPERIENCE: Job[] = [
 	{
 		company: "HBK",
