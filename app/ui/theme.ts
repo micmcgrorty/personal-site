@@ -51,12 +51,11 @@ export const theme = Object.fromEntries(
 	]),
 ) as Record<Token, string>;
 
-/** The custom property declarations that set a palette, for a style object. */
-export function paletteVariables(palette: Palette) {
-	return Object.fromEntries(
-		Object.entries(palette).map(([token, value]) => [
-			TOKENS[token as Token],
-			value,
-		]),
-	);
+/** A palette as a `:root` rule that sets every token's custom property. */
+export function paletteRule(palette: Palette): string {
+	let declarations = Object.entries(palette)
+		.map(([token, value]) => `\t${TOKENS[token as Token]}: ${value};`)
+		.join("\n");
+
+	return `:root {\n${declarations}\n}`;
 }

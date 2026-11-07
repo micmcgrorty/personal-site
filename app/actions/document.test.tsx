@@ -50,4 +50,25 @@ describe("Document", () => {
 			'<meta name="twitter:card" content="summary_large_image"',
 		);
 	});
+
+	it("sets the light, dark and print palettes on the root element", async () => {
+		let html = await render();
+
+		expect(html).toMatch(/(^|\n):root \{[^}]*--bg: #f5f7fa;/);
+		expect(html).toMatch(
+			/@media \(prefers-color-scheme: dark\) \{\s*:root \{[^}]*--bg: #0e1522;/,
+		);
+		expect(html).toMatch(/@media print \{\s*:root \{[^}]*--bg: #ffffff;/);
+	});
+
+	it("applies the base type, colours and box-sizing to every page", async () => {
+		let html = await render();
+
+		expect(html).toMatch(
+			/\*, \*::before, \*::after \{[^}]*box-sizing: border-box;/,
+		);
+		expect(html).toMatch(/body \{[^}]*background: var\(--bg\);/);
+		expect(html).toMatch(/body \{[^}]*color: var\(--text\);/);
+		expect(html).toMatch(/body \{[^}]*font-family: 'Bricolage Grotesque'/);
+	});
 });
