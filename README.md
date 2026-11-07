@@ -18,4 +18,8 @@ My personal site, built in Remix.
 npm i
 npm run dev
 npm run start
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
 ```

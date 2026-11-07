@@ -10,9 +10,6 @@
 		"format": "oxfmt",
 		"format:check": "oxfmt --check"
 	},
-	"engines": {
-		"node": ">=24.3.0"
-	},
 	"dependencies": {
 		"remix": "^3.1.0"
 	},
@@ -21,5 +18,8 @@
 		"oxfmt": "^0.77.0",
 		"oxlint": "^1.92.0",
 		"typescript": "latest"
+	},
+	"engines": {
+		"node": ">=24.3.0"
 	}
 }
