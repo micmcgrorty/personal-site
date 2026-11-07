@@ -32,26 +32,3 @@ export function XIcon() {
 		</svg>
 	);
 }
-
-export function MailIcon() {
-	return () => (
-		<svg viewBox="0 0 24 24" fill="none">
-			<rect
-				x="2"
-				y="4"
-				width="20"
-				height="16"
-				rx="2"
-				stroke="currentColor"
-				stroke-width="1.75"
-			/>
-			<path
-				d="m22 7-10 6L2 7"
-				stroke="currentColor"
-				stroke-width="1.75"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			/>
-		</svg>
-	);
-}

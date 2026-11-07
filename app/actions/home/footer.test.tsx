@@ -7,23 +7,21 @@ import { SOCIALS } from "../../data/socials.ts";
 import { Footer } from "./footer.tsx";
 
 describe("Footer", () => {
-	it("links the Email me button to the email address", async () => {
+	it("links the Email me button to the profile's email address", async () => {
 		let html = await renderToString(<Footer />);
-		let email = SOCIALS.find((social) => social.label === "Email");
 		let buttonHref = html.match(/<a href="([^"]*)"[^>]*>Email me<\/a>/)?.[1];
 
-		expect(email).toBeDefined();
-		expect(buttonHref).toBe(email?.href);
+		expect(buttonHref).toBe("mailto:michaelmcgrorty2@gmail.com");
+		expect(buttonHref).toBe(`mailto:${PROFILE.email}`);
 	});
 
-	it("lists every other social link, but not email", async () => {
+	it("lists every social link in the social nav, and no email link", async () => {
 		let html = await renderToString(<Footer />);
 		let nav = html.match(/<nav[\s\S]*?<\/nav>/)?.[0];
-		let others = SOCIALS.filter((social) => social.label !== "Email");
 
 		expect(nav).toBeDefined();
-		expect(others.length).toBeGreaterThan(0);
-		for (let social of others) {
+		expect(SOCIALS.length).toBeGreaterThan(0);
+		for (let social of SOCIALS) {
 			expect(nav).toContain(`href="${social.href}"`);
 			expect(nav).toContain(social.label);
 		}
