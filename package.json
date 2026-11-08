@@ -3,8 +3,8 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "node --watch --import remix/node-tsx server.ts",
-		"start": "cross-env NODE_ENV=production node --import remix/node-tsx server.ts",
+		"dev": "node --env-file-if-exists=.env --watch --import remix/node-tsx server.ts",
+		"start": "node --env-file-if-exists=.env --env-file=.env.production --import remix/node-tsx server.ts",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
 		"format": "oxfmt",
@@ -13,7 +13,6 @@
 		"test": "remix test"
 	},
 	"dependencies": {
-		"cross-env": "^10.1.0",
 		"remix": "^3.1.0"
 	},
 	"devDependencies": {
